@@ -512,9 +512,9 @@ function togglePlay(phaseNum) {
   currentAudio.addEventListener('ended', () => {
     flushListenTime();
     recordPlay(file);
-    cancelAnimationFrame(rafId);
-    currentAudio = null;
-    currentPhase = null;
+    currentAudio.currentTime = 0;
+    lastTimeSample = Date.now();
+    currentAudio.play();
     render();
   });
 
